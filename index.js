@@ -1,6 +1,8 @@
 const { Client, MessageEmbed } = require('discord.js');
 //var request = require('request');
 const fetch = require("node-fetch");
+const express = require('express');
+const PORT = process.env.PORT || 5000;
 const client = new Client();
 
 client.on('ready', () => {
@@ -63,6 +65,9 @@ fetch("https://api-dolar-argentina.herokuapp.com/api/euro/nacion")
             }
         });
 });
+
+express()
+    .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const token = 'Nzg0MzkxODQ0MTgzNTM5NzEy.X8on1A.6bK0IHRKtLA2LbWn3gNvErXXCqM';
 client.login(token);
