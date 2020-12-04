@@ -1,0 +1,21 @@
+{
+  "name": "bot-dolar-discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Massimo Adriel Quirolo",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "jquery": "^3.5.1",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
