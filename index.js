@@ -12,7 +12,7 @@ client.on('ready', () => {
 /*request({
     url : 'https://api.estadisticasbcra.com/usd_of',
     headers : {
-        'Authorization' : 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Mzg2NDIwODIsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJtYXNzaW1vXzkwNkBob3RtYWlsLmNvbSJ9.tzgGdGd6_GwzFCbSwjX-PrQoykY-h1N8WkO6PYg8FMz1NCVicz7Gjb81u-4D9zMKE31z8YXdIxAwsjwN6CasQA'
+        'Authorization' : 'Bearer token'
     },
     rejectUnauthorized: false
 }, function(err, res){
@@ -32,16 +32,17 @@ client.on('ready', () => {
     }
 });*/
 
+//Metodo para el Dolar Oficial
 fetch("https://api-dolar-argentina.herokuapp.com/api/nacion")
     .then(promesaFetch => promesaFetch.json())
     .then(contenido => {
         client.on('message', message => {
             if(message.content === '!dolar'){
                 const embed = new MessageEmbed()
-                    .setTitle('Cotización Euro Banco Nación')
+                    .setTitle('Cotización Dolar Banco Nación')
                     .setColor('#FF5733')
                     .setAuthor('KakuBot', 'https://i.ytimg.com/vi/3llt4DA90Ds/maxresdefault.jpg')
-                    .setDescription(`Fecha Cotizacion Dolar: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`)
+                    .setDescription(`Fecha Cotizacion Dolar: ${contenido.fecha} | Compra:$ ${contenido.compra} | Venta:$ ${contenido.venta}`)
 
                 message.channel.send(embed);
                 //message.channel.send(`Fecha Cotizacion Dolar: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`);
@@ -49,6 +50,7 @@ fetch("https://api-dolar-argentina.herokuapp.com/api/nacion")
         });
     });
 
+//Metodo para el Euro Oficial
 fetch("https://api-dolar-argentina.herokuapp.com/api/euro/nacion")
     .then(promesaFetch => promesaFetch.json())
     .then(contenido => {
@@ -58,16 +60,150 @@ fetch("https://api-dolar-argentina.herokuapp.com/api/euro/nacion")
                     .setTitle('Cotización Euro Banco Nación')
                     .setColor('#FF5733')
                     .setAuthor('KakuBot', 'https://i.ytimg.com/vi/3llt4DA90Ds/maxresdefault.jpg')
-                    .setDescription(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`)
+                    .setDescription(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra:$ ${contenido.compra} | Venta:$ ${contenido.venta}`)
 
                 //message.channel.send(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`);
                 message.channel.send(embed);
             }
         });
+    });
+
+//Metodo para el Dolar Blue
+fetch("https://api-dolar-argentina.herokuapp.com/api/dolarblue")
+    .then(promesaFetch => promesaFetch.json())
+    .then(contenido => {
+        client.on('message', message => {
+            if(message.content === '!dolarb'){
+                const embed = new MessageEmbed()
+                    .setTitle('Cotización Dolar Blue')
+                    .setColor('#FF5733')
+                    .setAuthor('KakuBot', 'https://i.ytimg.com/vi/3llt4DA90Ds/maxresdefault.jpg')
+                    .setDescription(`Fecha Cotizacion Dolar Blue: ${contenido.fecha} | Compra:$ ${contenido.compra} | Venta:$ ${contenido.venta}`)
+
+                //message.channel.send(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`);
+                message.channel.send(embed);
+            }
+        });
+    });
+
+//Metodo para el Riesgo País
+fetch("https://api-dolar-argentina.herokuapp.com/api/riesgopais")
+    .then(promesaFetch => promesaFetch.json())
+    .then(contenido => {
+        client.on('message', message => {
+            if(message.content === '!riesgop'){
+                const embed = new MessageEmbed()
+                    .setTitle('Riesgo Pais')
+                    .setColor('#FF5733')
+                    .setAuthor('KakuBot', 'https://i.ytimg.com/vi/3llt4DA90Ds/maxresdefault.jpg')
+                    .setDescription(`Fecha Riesgo País: ${contenido.fecha} | Valor: ${contenido.valor}`)
+
+                //message.channel.send(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`);
+                message.channel.send(embed);
+            }
+        });
+    });
+
+//Metodo para el Real Banco Nacion
+fetch("https://api-dolar-argentina.herokuapp.com/api/real/nacion")
+    .then(promesaFetch => promesaFetch.json())
+    .then(contenido => {
+        client.on('message', message => {
+            if(message.content === '!real'){
+                const embed = new MessageEmbed()
+                    .setTitle('Cotización Real Banco Nación')
+                    .setColor('#FF5733')
+                    .setAuthor('KakuBot', 'https://i.ytimg.com/vi/3llt4DA90Ds/maxresdefault.jpg')
+                    .setDescription(`Fecha Cotizacion Real: ${contenido.fecha} | Compra:$ ${contenido.compra} | Venta:$ ${contenido.venta}`)
+
+                //message.channel.send(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`);
+                message.channel.send(embed);
+            }
+        });
+    });
+
+//Metodo para las Reservas en dolares
+fetch("https://api-dolar-argentina.herokuapp.com/api/bcra/reservas")
+    .then(promesaFetch => promesaFetch.json())
+    .then(contenido => {
+        client.on('message', message => {
+            if(message.content === '!reservas'){
+                const embed = new MessageEmbed()
+                    .setTitle('Reservas del BCRA en dólares')
+                    .setColor('#FF5733')
+                    .setAuthor('KakuBot', 'https://i.ytimg.com/vi/3llt4DA90Ds/maxresdefault.jpg')
+                    .setDescription(`Fecha: ${contenido.fecha} | Valor: ${contenido.valor} | Moneda: ${contenido.moneda}`)
+
+                //message.channel.send(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`);
+                message.channel.send(embed);
+            }
+        });
+    });
+
+//Metodo para ayuda al usuario
+client.on('message', message => {
+    if(message.content === '!ayuda'){
+        const embed = new MessageEmbed()
+            .setTitle('Ayuda al Usuario')
+            .setColor('#FF5733')
+            .setAuthor('KakuBot', 'https://i.ytimg.com/vi/3llt4DA90Ds/maxresdefault.jpg')
+            .addField('!dolar', 'Proporciona información del Dolar Oficial.')
+            .addField('!dolarb', 'Proporciona información del Dolar Blue.')
+            .addField('!euro', 'Proporciona información del Euro Oficial.')
+            .addField('!real', 'Proporciona información del Real Oficial.')
+            .addField('!reservas', 'Proporciona información de las reservas del país en dolares.')
+            .addField('!riesgop', 'Proporciona información del Riesgo País.')
+
+        //message.channel.send(`Fecha Cotizacion Euro: ${contenido.fecha} | Compra: ${contenido.compra} | Venta: ${contenido.venta}`);
+        message.channel.send(embed);
+    }
 });
 
-express()
-    .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-const token = 'Nzg0MzkxODQ0MTgzNTM5NzEy.X8on1A.6bK0IHRKtLA2LbWn3gNvErXXCqM';
+const wakeUpDyno = (url, interval = 25, callback) => {
+    const milliseconds = interval * 60000;
+    setTimeout(() => {
+
+        try { 
+            console.log(`setTimeout called.`);
+            // HTTP GET request to the dyno's url
+            fetch(url).then(() => console.log(`Fetching ${url}.`)); 
+        }
+        catch (err) { // catch fetch errors
+            console.log(`Error fetching ${url}: ${err.message} 
+            Will try again in ${interval} minutes...`);
+        }
+        finally {
+
+            try {
+                callback(); // execute callback, if passed
+            }
+            catch (e) { // catch callback error
+                callback ? console.log("Callback failed: ", e.message) : null;
+            }
+            finally {
+                // do it all again
+                return wakeUpDyno(url, interval, callback);
+            }
+            
+        }
+
+    }, milliseconds);
+};
+
+const DYNO_URL = "https://obscure-crag-59153.herokuapp.com/";
+
+//Crear el servidor
+const app = express();
+
+
+
+express()
+    .listen(PORT, () => {
+        wakeUpDyno(DYNO_URL);
+        console.log(`Listening on ${ PORT }`)
+    }
+);
+
+const token = 'Tu Token del Bot de Discord';
 client.login(token);
